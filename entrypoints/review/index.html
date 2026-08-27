@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f3ecdd" />
+    <title>Today’s review — Tab Sunset List</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to review</a>
+    <header class="review-header">
+      <a class="wordmark" href="https://tab-sunset-list.sociobot.in" target="_blank" rel="noreferrer">
+        <span class="sun-mark" aria-hidden="true"></span>Tab Sunset List
+      </a>
+      <span class="local-note">Local to this browser</span>
+    </header>
+    <main id="main" class="review-main">
+      <div class="review-intro">
+        <div>
+          <p class="eyebrow">Today’s horizon</p>
+          <h1>Make the pile finite.</h1>
+          <p id="queue-summary" class="lede">Loading your local review queue…</p>
+        </div>
+        <div class="sun-counter" aria-hidden="true"><span id="sun-count">—</span></div>
+      </div>
+
+      <section id="review-panel" class="review-panel" aria-labelledby="item-title">
+        <div id="loading" class="loading-state" aria-live="polite">Reading your local list…</div>
+        <div id="item" hidden>
+          <div class="item-meta"><span id="item-domain"></span><span id="item-date"></span></div>
+          <h2 id="item-title"></h2>
+          <p id="item-reason" class="item-reason"></p>
+          <div class="decision-actions" aria-label="Decision actions">
+            <button type="button" data-action="keep"><span class="key">K</span> Keep open</button>
+            <button type="button" data-action="schedule"><span class="key">S</span> +7 days</button>
+            <button type="button" data-action="bookmark"><span class="key">B</span> Bookmark + close</button>
+            <button type="button" data-action="close" class="danger"><span class="key">C</span> Close tab</button>
+          </div>
+          <div class="queue-nav">
+            <button id="previous" type="button" aria-label="Previous due tab">← Previous</button>
+            <span id="position"></span>
+            <button id="next" type="button" aria-label="Next due tab">Next →</button>
+          </div>
+        </div>
+        <div id="empty" class="empty-state" hidden>
+          <div class="empty-horizon" aria-hidden="true"></div>
+          <h2>The horizon is clear.</h2>
+          <p>No tabs need a decision today. Set a sunset from the toolbar when a tab starts to linger.</p>
+        </div>
+        <div id="error" class="error-state" hidden>
+          <h2>Your local list did not open.</h2>
+          <p>Nothing was changed. Reload this page to try again.</p>
+          <button type="button" id="retry">Reload list</button>
+        </div>
+      </section>
+
+      <div id="undo" class="undo" role="status" hidden>
+        <span>Tab closed. A restored tab may not keep its scroll position.</span>
+        <button type="button" id="undo-button">Undo</button>
+      </div>
+
+      <section class="saved-section" aria-labelledby="saved-title">
+        <div>
+          <p class="eyebrow">Retrievable</p>
+          <h2 id="saved-title">Saved decisions</h2>
+          <p>Kept and bookmarked items remain exportable from this browser.</p>
+        </div>
+        <button id="export" type="button">Export Markdown</button>
+        <ul id="saved-list" class="saved-list"></ul>
+        <p id="export-status" class="sr-only" aria-live="polite"></p>
+      </section>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

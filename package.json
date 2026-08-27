@@ -1,0 +1,29 @@
+{
+  "name": "tab-sunset-list",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:site": "vite --config vite.site.config.ts",
+    "clean": "node scripts/clean.mjs",
+    "build:extension": "wxt build",
+    "build:site": "npm run build:extension && vite build --config vite.site.config.ts && npm run package:extension",
+    "package:extension": "node scripts/package-extension.mjs",
+    "build": "npm run clean && npm run build:site",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:extension": "npm run build:extension && playwright test --config playwright.extension.config.ts",
+    "check": "tsc --noEmit && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2",
+    "@types/chrome": "0.0.323",
+    "archiver": "7.0.1",
+    "typescript": "5.8.3",
+    "axe-core": "4.10.3",
+    "vite": "6.4.3",
+    "vitest": "3.2.7",
+    "wxt": "0.21.4"
+  }
+}

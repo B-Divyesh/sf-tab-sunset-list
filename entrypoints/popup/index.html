@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f3ecdd" />
+    <title>Set a sunset — Tab Sunset List</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to form</a>
+    <header class="topbar">
+      <a class="wordmark" href="/review.html" target="_blank" aria-label="Tab Sunset List review">
+        <span class="sun-mark" aria-hidden="true"></span>
+        Tab Sunset List
+      </a>
+      <button id="open-review" class="queue-link" type="button"><span id="due-count">0</span> due</button>
+    </header>
+    <main id="main">
+      <p class="eyebrow">Active tab</p>
+      <h1>When should this tab set?</h1>
+      <section id="tab-preview" class="tab-preview" aria-live="polite">
+        <div class="skeleton"></div>
+        <div class="skeleton short"></div>
+      </section>
+      <form id="sunset-form">
+        <fieldset>
+          <legend>Decision waiting at sunset</legend>
+          <div class="choice-row">
+            <label class="choice"><input type="radio" name="decision" value="review" checked /><span>Decide</span></label>
+            <label class="choice"><input type="radio" name="decision" value="read" /><span>Read</span></label>
+            <label class="choice"><input type="radio" name="decision" value="close" /><span>Close if unused</span></label>
+          </div>
+        </fieldset>
+        <div class="field-grid">
+          <label for="expiry">Sunset date</label>
+          <input id="expiry" name="expiry" type="date" required />
+          <label for="reason">Why keep it until then? <span>Optional</span></label>
+          <input id="reason" name="reason" type="text" maxlength="120" placeholder="Compare before Friday’s meeting" />
+        </div>
+        <button id="save" class="primary" type="submit">Set sunset</button>
+      </form>
+      <div id="status" class="status" aria-live="polite"></div>
+      <section id="unavailable" class="unavailable" hidden>
+        <h2>This page stays outside the list</h2>
+        <p>Browser settings and extension pages cannot be reopened safely. Choose a regular web page.</p>
+      </section>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
