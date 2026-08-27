@@ -1,0 +1,30 @@
+{
+  "slug": "tab-sunset-list",
+  "title": "Tab Sunset List",
+  "territory": "utilities",
+  "user": "Knowledge workers with chronic browser-tab overload who need a low-friction way to turn stale tabs into deliberate keep, schedule, bookmark, or close decisions.",
+  "evidence": [
+    {
+      "url": "https://hn.algolia.com/api/v1/items/48538828",
+      "date": "2026-06-15",
+      "quote_or_summary": "An Ask HN thread asks directly how people handle browser tab overload; responses include closing tabs or using specialized tools."
+    },
+    {
+      "url": "https://github.com/mozilla-mobile/firefox-ios/issues/33923",
+      "date": "2026-05-20",
+      "quote_or_summary": "Firefox iOS is asked to expose tab groups arriving from synced desktop devices, showing that even native tab grouping does not resolve cross-device tab accumulation."
+    }
+  ],
+  "recurrence": "A direct user question and an independent browser feature request in the same month show that unmanaged tabs remain a cross-device utility problem.",
+  "current_workaround": "Keep everything open, bulk-close tabs, create tab groups, or move important pages into bookmarks/read-later services.",
+  "incumbents_and_gap": "Native tab groups, OneTab, Workona, and session managers store tabs; the unresolved gap is a deliberate expiry queue that asks for a decision after a chosen age and preserves a compact rationale.",
+  "smallest_useful_product": "A browser extension that tags tabs with an expiry date and decision type, presents a daily small review queue, and exports kept items to browser bookmarks or Markdown. Non-goals: a new browser, cloud sync, AI summaries, or replacing native session restore.",
+  "success_measure": "Among weekly active pilots, median open-tab count falls 30% after four weeks while at least 80% of explicitly saved tabs remain retrievable.",
+  "artifact_class": "browser-extension",
+  "monetization": "free — the minimal browser utility gains trust without a cloud account; optional one-time cross-browser export could follow.",
+  "constraints": "Use only tabs/bookmarks permissions needed; never send browsing history off device; make close actions undoable while browser APIs allow it.",
+  "est_build_effort": "S",
+  "why_distinct": "It uses time-bounded decisions and exportable outcomes, rather than treating tab hoarding as a storage or workspace-management problem.",
+  "confidence": 3,
+  "state": "RESEARCHED"
+}

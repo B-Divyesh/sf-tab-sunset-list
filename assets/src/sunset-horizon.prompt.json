@@ -1,0 +1,9 @@
+{
+  "use_case": "stylized-concept",
+  "asset_type": "responsive landing page hero illustration",
+  "prompt": "A precise abstract geometric sunset assembled from layered cut-paper browser-tab slips and concentric orbital arcs, one solid vermilion disk crossing a straight horizon, small marigold timing ticks and muted moss accents, tactile desk-almanac world, screenprint ink on warm fibrous parchment, flat editorial lighting, orthographic view, crisp edges and subtle imperfect ink texture, wide landscape composition with the visual weight right of center and generous calm negative space on the left, coherent warm parchment, evergreen ink, vermilion, marigold and moss palette. No text, no letters, no numbers, no UI screenshots, no people, no device, no browser logos, no brand marks, no watermark, no generic gradient, no 3D chrome, no neon.",
+  "size": "1536x1024",
+  "quality": "high",
+  "generator": "factory-image via /opt/fleet/lib/gen-image.sh",
+  "generated_at": "2026-08-27"
+}
