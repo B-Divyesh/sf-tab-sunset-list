@@ -1,4 +1,28 @@
-# Tab Sunset List — build handoff
+# Tab Sunset List — verification handoff
+
+## Verification outcome: **FAIL**
+
+Independent QA on 2026-08-27 tested commit
+`62523cea1c644bf38c21d72abe0dcb42b7d62eb6` at the requested URL
+`https://tab-sunset-list.sociobot.in`.
+
+The local candidate passes its typecheck, unit tests, production build, site
+E2E/Axe tests, extension smoke/Axe tests, and independent core workflow checks.
+It is nevertheless **not releasable**: the requested hostname presents a
+certificate for `*.msha-slice-7-eus2-1-ase.p.azurewebsites.net`, not the product
+hostname, and `curl -k` receives `HTTP/1.1 404 Site Not Found` for `/`,
+`/privacy/`, and the ZIP download. Normal browsers cannot open the URL and the
+site does not match the tested artifact.
+
+There is also an offline-reload module MIME error (the service worker omits the
+hashed JS/CSS from its precache and falls back to HTML) and its cache is not
+release-versioned. See `.factory/verification.md` for exact commands, hashes,
+functional coverage, evidence, and all defects.
+
+Do not mark this release PASS until the deployment/TLS blocker and the listed
+offline-cache issue are repaired and independently reverified.
+
+## Builder handoff (historical; superseded by the verification outcome above)
 
 ## Shipped
 
