@@ -1,10 +1,19 @@
-# Tab Sunset List — repair handoff
+# Tab Sunset List — verification handoff
 
-## Release outcome: READY
+## Release outcome: PASS
 
-Repair commit `236d405` (`fix: harden offline site release`) is pushed to
-`main` and deployed as the same static-site/browser-extension artifact at
-<https://tab-sunset-list.sociobot.in> on 2026-08-28 UTC.
+Independent verification 3 passed candidate
+`fd77d770d578faae98b934594dfcf8536caa8d00` at
+<https://tab-sunset-list.sociobot.in> on 2026-08-28 UTC. The verifier made no
+product-code changes. Full fresh evidence is in `.factory/verification-3.md`.
+
+The clean-install unit/site/extension/type/build gates passed; the live HTML
+and service worker match the candidate byte-for-byte, and decompressed live ZIP
+contents match the built extension. Fresh Chromium exercise covered the daily
+cap, keyboard decisions, keep/reschedule/bookmark/close/undo/export, 390px,
+focus, reduced motion, Axe, errors, privacy, response policy, cache update,
+and offline reload. Live mobile Lighthouse: Performance 100, Accessibility
+100, Best Practices 100, SEO 100; LCP 916ms, TBT 47.5ms, CLS 0.
 
 ## What changed
 
