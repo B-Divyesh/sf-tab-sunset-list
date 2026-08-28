@@ -21,16 +21,16 @@ body { margin: 0; min-width: 320px; background: var(--paper); color: var(--ink);
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
-.skip-link { position: fixed; z-index: 20; top: 8px; left: 8px; padding: 10px 14px; transform: translateY(-150%); border: 1px solid var(--ink); background: var(--surface); }
+.skip-link { position: fixed; z-index: 20; top: 8px; left: 8px; display: inline-flex; min-width: 44px; min-height: 44px; align-items: center; padding: 9px 14px; transform: translateY(-150%); border: 1px solid var(--ink); background: var(--surface); }
 .skip-link:focus { transform: none; }
 .site-header { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; width: var(--shell); min-height: 76px; margin: 0 auto; border-bottom: 1px solid rgba(23, 42, 37, .35); }
-.brand { display: inline-flex; align-items: center; gap: 10px; font-size: .86rem; font-weight: 800; letter-spacing: .035em; text-decoration: none; }
+.brand { display: inline-flex; min-width: 44px; min-height: 44px; align-items: center; gap: 10px; font-size: .86rem; font-weight: 800; letter-spacing: .035em; text-decoration: none; }
 .brand-sun { position: relative; display: inline-block; width: 24px; height: 24px; overflow: hidden; border: 2px solid var(--accent); border-radius: 50%; }
 .brand-sun::before { position: absolute; content: ""; inset: 0 0 48%; background: var(--accent); }
 .site-header nav, footer nav { display: flex; align-items: center; gap: 28px; font-size: .84rem; font-weight: 700; }
-.site-header nav a { text-decoration: none; }
+.site-header nav a, footer nav a, main a:not(.button) { display: inline-flex; min-width: 44px; min-height: 44px; align-items: center; text-decoration: none; }
 .site-header nav a:hover { text-decoration: underline; }
-.nav-install { padding: 11px 15px; border: 1px solid var(--ink); border-radius: 4px; background: rgba(255, 249, 236, .7); }
+.nav-install { justify-content: center; padding: 9px 15px; border: 1px solid var(--ink); border-radius: 4px; background: rgba(255, 249, 236, .7); }
 .hero { position: relative; min-height: 710px; overflow: hidden; border-bottom: 1px solid var(--ink); }
 .hero-art { position: absolute; inset: 0; }
 .hero-art::after { position: absolute; content: ""; inset: 0; background: linear-gradient(90deg, rgba(243,236,221,.95) 0%, rgba(243,236,221,.8) 34%, rgba(243,236,221,0) 62%); }
