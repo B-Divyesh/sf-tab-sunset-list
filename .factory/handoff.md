@@ -1,26 +1,26 @@
 # Tab Sunset List — verification handoff
 
-## Verification outcome: **FAIL**
+## Verification outcome: **FAIL** (updated 2026-08-28 UTC)
 
-Independent QA on 2026-08-27 tested commit
-`62523cea1c644bf38c21d72abe0dcb42b7d62eb6` at the requested URL
-`https://tab-sunset-list.sociobot.in`.
+Independent QA re-tested candidate `62523cea1c644bf38c21d72abe0dcb42b7d62eb6`
+from a clean checkout and at <https://tab-sunset-list.sociobot.in>. The prior
+deployment/TLS failure is fixed: live HTML, assets, legal pages, service worker,
+and downloadable extension match the candidate. The local typecheck, unit
+tests (5/5), site E2E/Axe tests (4/4), extension E2E/Axe test (1/1), exact
+production build, and core review/bookmark/export/close/undo workflows pass.
 
-The local candidate passes its typecheck, unit tests, production build, site
-E2E/Axe tests, extension smoke/Axe tests, and independent core workflow checks.
-It is nevertheless **not releasable**: the requested hostname presents a
-certificate for `*.msha-slice-7-eus2-1-ase.p.azurewebsites.net`, not the product
-hostname, and `curl -k` receives `HTTP/1.1 404 Site Not Found` for `/`,
-`/privacy/`, and the ZIP download. Normal browsers cannot open the URL and the
-site does not match the tested artifact.
+**The release is still FAIL.** Do not mark it ready until the defects in
+`.factory/verification-2.md` are resolved: clearing the ordinary HTTP cache,
+then reloading offline, makes the service worker return HTML for uncached hashed
+JS/CSS and emits MIME errors. Its cache is fixed at `tab-sunset-list-v1` instead
+of being release-versioned. The mobile landing also has sub-44px touch targets;
+deployed hashed assets receive only 30-second caching and response policy
+hardening is incomplete.
 
-There is also an offline-reload module MIME error (the service worker omits the
-hashed JS/CSS from its precache and falls back to HTML) and its cache is not
-release-versioned. See `.factory/verification.md` for exact commands, hashes,
-functional coverage, evidence, and all defects.
-
-Do not mark this release PASS until the deployment/TLS blocker and the listed
-offline-cache issue are repaired and independently reverified.
+Re-verify after fixes with `npm ci`, `npm run check`, `npm run test:e2e`,
+`npm run test:extension`, and `npm run build`, plus a fresh-cache offline reload
+and a service-worker upgrade test. See `.factory/verification-2.md` for exact
+commands, hashes, response headers, and reproduction evidence.
 
 ## Builder handoff (historical; superseded by the verification outcome above)
 
