@@ -1,4 +1,28 @@
-# Tab Sunset List — repair 2 handoff
+# Tab Sunset List — verification 4 handoff
+
+## Independent QA result
+
+Verification 4 is a **PASS** with zero findings and zero untested claims. The
+implementation reviewed is `9a672cf36a7025b11d96f05c63e819c3ce822807`;
+the documentation baseline is
+`f3d19eb1d4bc874fa7887d6cd6ba55739bfa930b`. The later verification report
+commit changes documentation only.
+
+Fresh desktop and phone browsers confirmed the job, audience, and “Try it with
+sample data” action before scrolling. The live sample is populated, persistently
+labelled, keyboard-operable, resettable, and isolated from a real-data sentinel.
+All 19 claim commands and the full 5-unit, 13-site, and 16-extension suites
+passed from a clean detached checkout. The exact live pages, service worker, and
+unpacked extension match the clean build.
+
+Fresh Lighthouse scores are 100 in Performance, Accessibility, Best Practices,
+and SEO, with 931ms LCP, 27ms TBT, and 0 CLS. Full evidence and earlier-finding
+dispositions are in [`.factory/verification-4.md`](verification-4.md).
+
+There are no remaining release defects. Developer-mode installation, URL-only
+undo, and the deliberate absence of cloud sync remain documented product limits.
+
+# Repair 2 implementation record
 
 ## Outcome
 
