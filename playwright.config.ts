@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: 'tests/e2e',
   use: { baseURL: 'http://127.0.0.1:4173' },
   webServer: {
-    command: 'npm run build:site && npx vite preview --config vite.site.config.ts --host 127.0.0.1',
+    command: 'npm run build:site && node scripts/preview-site.mjs',
     port: 4173,
     reuseExistingServer: true,
   },

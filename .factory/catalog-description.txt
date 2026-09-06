@@ -1,0 +1,1 @@
+Set review dates for stale tabs, then keep, reschedule, bookmark, or close them.

@@ -1,0 +1,135 @@
+[
+  {
+    "id": "one-click-demo",
+    "claim": "One click opens a populated sample with five realistic tabs.",
+    "where": "landing first screen, README",
+    "test": "npm run test:e2e -- --grep \"@claim:one-click-demo\"",
+    "sandbox": "fresh browser context; enter /demo/ from the first-screen action; assert the populated queue and saved output"
+  },
+  {
+    "id": "demo-isolation-reset",
+    "claim": "The demo uses separate sample storage, resets to its seed, and clears sample state when starting for real.",
+    "where": "demo banner, privacy, README",
+    "test": "npm run test:e2e -- --grep \"@claim:demo-isolation-reset\"",
+    "sandbox": "seed a real-data sentinel; change and reset the demo; leave demo; assert the sentinel never changes"
+  },
+  {
+    "id": "free-no-account",
+    "claim": "The sample and packaged extension are available without an account or payment.",
+    "where": "landing first screen, README, terms",
+    "test": "npm run test:e2e -- --grep \"@claim:free-no-account\"",
+    "sandbox": "fresh browser context; complete a sample decision and download the ZIP without auth or checkout"
+  },
+  {
+    "id": "site-private",
+    "claim": "The website sets no cookies and makes no cross-origin requests during the full sample flow.",
+    "where": "landing privacy section, privacy, README",
+    "test": "npm run test:e2e -- --grep \"@claim:site-private\"",
+    "sandbox": "fresh browser context; record requests and cookies while exercising every sample decision"
+  },
+  {
+    "id": "offline-site",
+    "claim": "The home, demo, privacy, and terms pages work offline after one visit.",
+    "where": "site footer, privacy, README",
+    "test": "npm run test:e2e -- --grep \"@claim:offline-site\"",
+    "sandbox": "dedicated fresh browser context; load once; clear HTTP cache; set context offline; open every cached route"
+  },
+  {
+    "id": "chromium-load",
+    "claim": "The packaged MV3 extension loads in a fresh Chromium profile.",
+    "where": "landing first screen, README",
+    "test": "npm run test:extension -- --grep \"@claim:chromium-load\"",
+    "sandbox": "fresh temporary Chromium profile with only the production-built extension loaded"
+  },
+  {
+    "id": "tag-tab",
+    "claim": "A user can save a review date, decision intent, and optional note for the active tab.",
+    "where": "landing how-it-works, popup, README",
+    "test": "npm run test:extension -- --grep \"@claim:tag-tab\"",
+    "sandbox": "fresh temporary Chromium profile; intercepted sample tab; popup UI; inspect browser-local extension state"
+  },
+  {
+    "id": "due-badge",
+    "claim": "The extension badge and popup show the number of due tabs.",
+    "where": "popup, README",
+    "test": "npm run test:extension -- --grep \"@claim:due-badge\"",
+    "sandbox": "fresh temporary Chromium profile with two due items and one future item"
+  },
+  {
+    "id": "seven-item-queue",
+    "claim": "The daily review shows no more than seven due tabs.",
+    "where": "landing how-it-works, README",
+    "test": "npm run test:extension -- --grep \"@claim:seven-item-queue\"",
+    "sandbox": "fresh temporary Chromium profile seeded with eight due items; navigate to the last visible item"
+  },
+  {
+    "id": "keyboard-review",
+    "claim": "Arrow keys and K, S, B, and C operate the daily review.",
+    "where": "landing preview, review page, README",
+    "test": "npm run test:extension -- --grep \"@claim:keyboard-review\"",
+    "sandbox": "fresh temporary Chromium profile with two due items; use keyboard only; assert result, announcement, and focus"
+  },
+  {
+    "id": "keep-rationale",
+    "claim": "Keep leaves the browser tab open and saves its note.",
+    "where": "landing preview, README",
+    "test": "npm run test:extension -- --grep \"@claim:keep-rationale\"",
+    "sandbox": "fresh temporary Chromium profile with a matching open sample tab and one due item"
+  },
+  {
+    "id": "reschedule-seven",
+    "claim": "Reschedule moves a due tab forward by seven days.",
+    "where": "landing preview, README",
+    "test": "npm run test:extension -- --grep \"@claim:reschedule-seven\"",
+    "sandbox": "fresh temporary Chromium profile with one due item; assert the persisted date"
+  },
+  {
+    "id": "bookmark-close",
+    "claim": "Bookmark and close creates a browser bookmark, closes the matching tab, and saves the outcome.",
+    "where": "landing preview, README",
+    "test": "npm run test:extension -- --grep \"@claim:bookmark-close\"",
+    "sandbox": "fresh temporary Chromium profile with an intercepted open sample tab; inspect bookmarks, tabs, and saved state"
+  },
+  {
+    "id": "close-undo",
+    "claim": "Close removes the matching tab, and Undo reopens its URL in the review queue.",
+    "where": "landing preview, terms, README",
+    "test": "npm run test:extension -- --grep \"@claim:close-undo\"",
+    "sandbox": "fresh temporary Chromium profile with an intercepted open sample tab; close, undo, and inspect tabs and state"
+  },
+  {
+    "id": "saved-retrievable",
+    "claim": "Saved decisions and notes remain available after the review page reloads.",
+    "where": "landing privacy section, review page, README",
+    "test": "npm run test:extension -- --grep \"@claim:saved-retrievable\"",
+    "sandbox": "fresh temporary Chromium profile; keep a due item; reload the review and inspect rendered and stored output"
+  },
+  {
+    "id": "markdown-export",
+    "claim": "Markdown export includes every saved item with its URL, outcome, and note.",
+    "where": "review page, README",
+    "test": "npm run test:extension -- --grep \"@claim:markdown-export\"",
+    "sandbox": "fresh temporary Chromium profile with two saved items; download and inspect the generated Markdown"
+  },
+  {
+    "id": "local-data-no-network",
+    "claim": "The extension stores tab data in browser-local storage and sends no tab data over the web.",
+    "where": "landing privacy section, privacy, README",
+    "test": "npm run test:extension -- --grep \"@claim:local-data-no-network\"",
+    "sandbox": "fresh temporary Chromium profile; record web requests while deciding an item; reload and inspect local state"
+  },
+  {
+    "id": "least-permissions",
+    "claim": "The extension requests only tabs, storage, bookmarks, and alarms, with no site access.",
+    "where": "privacy, README",
+    "test": "npm run test:extension -- --grep \"@claim:least-permissions\"",
+    "sandbox": "fresh temporary Chromium profile; read the manifest of the running production extension"
+  },
+  {
+    "id": "delete-local-data",
+    "claim": "Delete local data clears extension records without deleting browser bookmarks.",
+    "where": "review page, privacy, README",
+    "test": "npm run test:extension -- --grep \"@claim:delete-local-data\"",
+    "sandbox": "fresh temporary Chromium profile with queue data and a browser bookmark; confirm deletion and inspect both stores"
+  }
+]

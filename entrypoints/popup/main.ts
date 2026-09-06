@@ -50,8 +50,8 @@ async function initialise() {
       reason.value = existing.reason;
       const radio = form.elements.namedItem('decision') as RadioNodeList;
       radio.value = existing.decision;
-      save.textContent = 'Update sunset';
-      showStatus('This tab already has a sunset.');
+      save.textContent = 'Update review date';
+      showStatus('This tab already has a review date.');
     }
   } catch {
     preview.textContent = 'The active tab could not be read.';
@@ -64,7 +64,7 @@ form.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (!activeTab?.url || !form.reportValidity()) return;
   save.disabled = true;
-  save.textContent = 'Setting…';
+    save.textContent = 'Saving…';
   try {
     const state = await getState();
     const existing = state.tracked.find((item) => item.tabId === activeTab!.id || item.url === activeTab!.url);
@@ -84,11 +84,11 @@ form.addEventListener('submit', async (event) => {
     };
     await setState({ ...state, tracked: [...state.tracked.filter((item) => item.id !== tracked.id), tracked] });
     await updateBadge();
-    showStatus(`Sunset set for ${new Date(tracked.expiresAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}.`);
-    save.textContent = 'Sunset set';
+    showStatus(`Review set for ${new Date(tracked.expiresAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}.`);
+    save.textContent = 'Review date saved';
   } catch {
-    showStatus('The sunset was not saved. Try again.', 'error');
-    save.textContent = 'Set sunset';
+    showStatus('The review date was not saved. Try again.', 'error');
+    save.textContent = 'Save review date';
   } finally {
     save.disabled = false;
   }

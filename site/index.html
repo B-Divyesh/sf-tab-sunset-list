@@ -3,13 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A private browser extension that gives stale tabs an expiry date and a small daily decision queue." />
+    <meta name="description" content="Set review dates for stale browser tabs, then keep, reschedule, bookmark, or close them from a short daily queue." />
     <meta name="theme-color" content="#f3ecdd" />
-    <meta property="og:title" content="Tab Sunset List — every tab gets a horizon" />
-    <meta property="og:description" content="Turn lingering tabs into deliberate keep, schedule, bookmark, or close decisions." />
-    <meta property="og:image" content="/assets/sunset-horizon-1536.webp" />
-    <title>Tab Sunset List — every tab gets a horizon</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Tab Sunset List — decide what to do with stale tabs" />
+    <meta property="og:description" content="Set review dates for stale tabs and decide what to keep, reschedule, bookmark, or close." />
+    <meta property="og:url" content="https://tab-sunset-list.sociobot.in/" />
+    <meta property="og:image" content="https://tab-sunset-list.sociobot.in/assets/tab-sunset-list-social.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tab Sunset List — decide what to do with stale tabs" />
+    <meta name="twitter:description" content="Set review dates for stale tabs and decide what to keep, reschedule, bookmark, or close." />
+    <meta name="twitter:image" content="https://tab-sunset-list.sociobot.in/assets/tab-sunset-list-social.webp" />
+    <title>Tab Sunset List — decide what to do with stale tabs</title>
+    <link rel="canonical" href="https://tab-sunset-list.sociobot.in/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <script type="module" src="/main.ts"></script>
   </head>
   <body>
@@ -20,9 +30,9 @@
         <span>Tab Sunset List</span>
       </a>
       <nav aria-label="Primary navigation">
-        <a href="#how">How it works</a>
-        <a href="#privacy">Privacy</a>
-        <a class="nav-install" href="/downloads/tab-sunset-list-chrome.zip" download>Get the extension</a>
+        <a href="/demo/">Demo</a>
+        <a href="/privacy/">Privacy</a>
+        <a class="nav-install" href="/downloads/tab-sunset-list-chrome.zip" download>Download</a>
       </nav>
     </header>
 
@@ -30,110 +40,116 @@
       <section class="hero" aria-labelledby="hero-title">
         <picture class="hero-art">
           <source srcset="/assets/sunset-horizon-768.webp 768w, /assets/sunset-horizon-1536.webp 1536w" type="image/webp" sizes="100vw" />
-          <img src="/assets/sunset-horizon-1536.webp" width="1536" height="1024" alt="Layered paper tabs orbit a vermilion sun as it crosses a geometric horizon." fetchpriority="high" decoding="async" />
+          <img src="/assets/sunset-horizon-1536.webp" width="1536" height="1024" alt="Layered paper tabs approach a marked review date." fetchpriority="high" decoding="async" />
         </picture>
         <div class="hero-copy">
-          <p class="kicker"><span>Local-first</span> · Chrome &amp; Edge</p>
-          <h1 id="hero-title">Every tab gets<br />a horizon.</h1>
-          <p class="hero-lede">Give a lingering tab a date. When it arrives, make one clear decision: keep, schedule, bookmark, or close.</p>
+          <p class="kicker">Chrome extension</p>
+          <h1 id="hero-title">Decide what to do with stale tabs</h1>
+          <p class="hero-lede">For knowledge workers whose useful browser tabs become an unreviewed pile.</p>
           <div class="hero-actions">
-            <a class="button primary" href="/downloads/tab-sunset-list-chrome.zip" download>Download extension <span aria-hidden="true">↓</span></a>
-            <a class="text-link" href="#install">Install in 60 seconds <span aria-hidden="true">→</span></a>
+            <a class="button primary" href="/demo/">Try it with sample data</a>
+            <p>Review five sample tabs. The demo cannot change your extension data.</p>
           </div>
-          <p class="microcopy">Free. No account. Your URLs never leave your browser.</p>
+          <ul class="hero-facts" aria-label="Product facts">
+            <li>Runs in Chromium browsers.</li>
+            <li>Stores tab decisions in your browser.</li>
+            <li>Free to install. No account.</li>
+          </ul>
         </div>
       </section>
 
-      <section class="problem-band" aria-label="Product promise">
-        <p>Not another place to hoard tabs.</p>
-        <p class="promise">A deadline for deciding.</p>
+      <section class="problem-band" aria-label="Product summary">
+        <p>Tag a tab now.</p>
+        <p class="promise">Decide when its date arrives.</p>
         <span class="orbit-glyph" aria-hidden="true"></span>
+      </section>
+
+      <section class="instrument section-shell" aria-labelledby="preview-title">
+        <div class="instrument-copy">
+          <p class="eyebrow">Daily review</p>
+          <h2 id="preview-title">Handle one due tab at a time</h2>
+          <p>Each item shows its page, due date, and the note you saved.</p>
+          <ul class="feature-list">
+            <li><span>K</span> Keep the tab open</li>
+            <li><span>S</span> Move its date by seven days</li>
+            <li><span>B</span> Bookmark it and close the tab</li>
+            <li><span>C</span> Close the tab with an undo option</li>
+          </ul>
+          <a class="text-link" href="/demo/">Open the working sample <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="review-demo" aria-label="Sample review item">
+          <div class="demo-top"><span>developer.chrome.com</span><span>Due today</span></div>
+          <h3>Service worker lifecycle guide</h3>
+          <p>Check the update notes before Friday’s release.</p>
+          <div class="demo-buttons" aria-hidden="true">
+            <span>K <small>Keep</small></span>
+            <span>S <small>+7 days</small></span>
+            <span>B <small>Bookmark</small></span>
+            <span>C <small>Close</small></span>
+          </div>
+          <div class="demo-progress"><span>1 of 5</span><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="demo-label">Sample view. Use the demo to make decisions.</p>
+        </div>
       </section>
 
       <section id="how" class="workflow section-shell" aria-labelledby="how-title">
         <div class="section-heading">
-          <p class="eyebrow">One small ritual</p>
-          <h2 id="how-title">Tag now. Decide later.</h2>
-          <p>Sunsets add intention without interrupting your current train of thought.</p>
+          <p class="eyebrow">How it works</p>
+          <h2 id="how-title">Review tabs in three steps</h2>
+          <p>Dates turn an open-ended tab pile into a short decision list.</p>
         </div>
         <ol class="steps">
           <li>
             <span class="step-number">01</span>
-            <div><h3>Set the horizon</h3><p>Choose a date and leave a compact reason while the context is fresh.</p></div>
+            <div><h3>Set a review date</h3><p>Give the active tab a date and note before you switch tasks.</p></div>
           </li>
           <li>
             <span class="step-number">02</span>
-            <div><h3>Review seven or fewer</h3><p>The badge counts what is due. Your daily queue stays deliberately finite.</p></div>
+            <div><h3>Open the due list</h3><p>See no more than seven due tabs, then handle one at a time.</p></div>
           </li>
           <li>
             <span class="step-number">03</span>
-            <div><h3>Choose an outcome</h3><p>Keep, defer, bookmark and close, or close—with an immediate undo.</p></div>
+            <div><h3>Choose what happens</h3><p>Keep it open, move its date, bookmark it, or close it.</p></div>
           </li>
         </ol>
-      </section>
-
-      <section class="instrument section-shell" aria-labelledby="instrument-title">
-        <div class="instrument-copy">
-          <p class="eyebrow">Built for momentum</p>
-          <h2 id="instrument-title">Four decisions.<br />No filing system.</h2>
-          <p>Shortcuts make review feel like clearing a small deck, not reorganizing your digital life.</p>
-          <ul class="feature-list">
-            <li><span>K</span> Keep the tab open and preserve its rationale</li>
-            <li><span>S</span> Schedule it seven days forward</li>
-            <li><span>B</span> Bookmark it, then close the original</li>
-            <li><span>C</span> Close it, with one-click reopen</li>
-          </ul>
-        </div>
-        <div class="review-demo" aria-label="Illustrative review queue">
-          <div class="demo-top"><span>docs.example.com</span><span>Due today</span></div>
-          <h3 id="demo-title">Planning a calmer research workflow</h3>
-          <p id="demo-reason">“Compare this with the new project brief.”</p>
-          <div class="demo-buttons">
-            <button type="button" data-demo-action="Keep">K <span>Keep</span></button>
-            <button type="button" data-demo-action="Schedule">S <span>+7 days</span></button>
-            <button type="button" data-demo-action="Bookmark">B <span>Bookmark</span></button>
-            <button type="button" data-demo-action="Close">C <span>Close</span></button>
-          </div>
-          <div class="demo-progress"><span id="demo-status" aria-live="polite">1 of 4</span><i></i><i></i><i></i><i></i></div>
-          <p class="demo-label">Illustrative preview — real reviews happen inside the extension.</p>
-        </div>
       </section>
 
       <section id="privacy" class="privacy-panel section-shell" aria-labelledby="privacy-title">
         <div class="privacy-orbits" aria-hidden="true"><i></i><i></i><i></i></div>
         <div>
-          <p class="eyebrow">Private by architecture</p>
-          <h2 id="privacy-title">Your tabs remain yours.</h2>
-          <p>Tab details, notes, and saved decisions stay in browser-local storage. There is no account, cloud sync, analytics SDK, or remote history service.</p>
-          <a class="text-link" href="/privacy/">Read the plain-language privacy policy <span aria-hidden="true">→</span></a>
+          <p class="eyebrow">Privacy</p>
+          <h2 id="privacy-title">Tab data stays in your browser</h2>
+          <p>Tab Sunset List stores tagged URLs, notes, dates, and saved decisions in browser-local extension storage.</p>
+          <p>It has no account, cloud sync, analytics, or remote history service.</p>
+          <a class="text-link" href="/privacy/">Read the privacy policy <span aria-hidden="true">→</span></a>
         </div>
         <dl>
-          <div><dt>Network requests</dt><dd>Zero</dd></div>
-          <div><dt>Third-party scripts</dt><dd>Zero</dd></div>
+          <div><dt>Web requests from the extension</dt><dd>None</dd></div>
+          <div><dt>Website cookies</dt><dd>None</dd></div>
           <div><dt>Required account</dt><dd>None</dd></div>
         </dl>
       </section>
 
       <section id="install" class="install section-shell" aria-labelledby="install-title">
         <div class="section-heading">
-          <p class="eyebrow">Developer-mode install</p>
-          <h2 id="install-title">Start before the next tab pile.</h2>
-          <p>Store review is not available yet. Install this packaged v1 in about a minute.</p>
+          <p class="eyebrow">Install</p>
+          <h2 id="install-title">Install the packaged extension</h2>
+          <p>Install this version in developer mode.</p>
         </div>
         <ol class="install-steps">
           <li><span>1</span><p><a href="/downloads/tab-sunset-list-chrome.zip" download>Download the ZIP</a>, then unzip it.</p></li>
-          <li><span>2</span><p>Open <strong>chrome://extensions</strong> or <strong>edge://extensions</strong> and enable Developer mode.</p></li>
-          <li><span>3</span><p>Choose “Load unpacked” and select the unzipped folder.</p></li>
+          <li><span>2</span><p>Open <strong>chrome://extensions</strong> and enable Developer mode.</p></li>
+          <li><span>3</span><p>Choose “Load unpacked,” then select the unzipped folder.</p></li>
         </ol>
-        <a class="button primary" href="/downloads/tab-sunset-list-chrome.zip" download>Download Tab Sunset List</a>
+        <a class="button primary" href="/downloads/tab-sunset-list-chrome.zip" download>Download the extension</a>
       </section>
     </main>
 
     <footer>
-      <div class="footer-mark"><span class="brand-sun" aria-hidden="true"></span><strong>Tab Sunset List</strong><p>Deliberate endings for lingering tabs.</p></div>
-      <nav aria-label="Legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-tab-sunset-list" rel="noreferrer">Source</a></nav>
-      <p class="provenance">Original artwork generated for this product with Azure OpenAI; no stock assets.</p>
-      <p id="connectivity" class="connectivity" aria-live="polite">Works offline after first visit</p>
+      <div class="footer-mark"><span class="brand-sun" aria-hidden="true"></span><strong>Tab Sunset List</strong><p>Review stale tabs and decide what happens next.</p></div>
+      <nav aria-label="Legal and project links"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://github.com/B-Divyesh/sf-tab-sunset-list" rel="noreferrer">Source <span class="sr-only">(external)</span></a></nav>
+      <p class="provenance">Built by Param Factory · v1.1.0 · Original generated artwork.</p>
+      <p id="connectivity" class="connectivity" aria-live="polite">Site files are available offline after one visit.</p>
     </footer>
   </body>
 </html>

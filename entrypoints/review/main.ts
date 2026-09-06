@@ -2,8 +2,8 @@ import '../../src/styles/extension.css';
 import { markdownForSaved, hostFromUrl } from '../../src/lib/domain';
 import { resolveBookmark, resolveClose, resolveKeep, reschedule, undoClose } from '../../src/lib/actions';
 import { dueTabs } from '../../src/lib/domain';
-import { getState } from '../../src/lib/store';
-import type { SavedItem, TrackedTab } from '../../src/lib/types';
+import { getState, setState, updateBadge } from '../../src/lib/store';
+import { DEFAULT_STATE, type SavedItem, type TrackedTab } from '../../src/lib/types';
 
 const loading = document.querySelector<HTMLElement>('#loading')!;
 const itemPanel = document.querySelector<HTMLElement>('#item')!;
@@ -22,6 +22,9 @@ const undo = document.querySelector<HTMLElement>('#undo')!;
 const savedList = document.querySelector<HTMLUListElement>('#saved-list')!;
 const exportButton = document.querySelector<HTMLButtonElement>('#export')!;
 const exportStatus = document.querySelector<HTMLElement>('#export-status')!;
+const queueAnnouncement = document.querySelector<HTMLElement>('#queue-announcement')!;
+const deleteDataButton = document.querySelector<HTMLButtonElement>('#delete-data')!;
+const deleteDialog = document.querySelector<HTMLDialogElement>('#delete-dialog')!;
 let queue: TrackedTab[] = [];
 let saved: SavedItem[] = [];
 let index = 0;
@@ -56,17 +59,19 @@ function renderSaved() {
   }
 }
 
-function renderQueue() {
+function renderQueue(options: { focusItem?: boolean; message?: string } = {}) {
   setVisible(loading, false);
   setVisible(errorPanel, false);
   sunCount.textContent = String(queue.length);
   summary.textContent = queue.length
     ? `${queue.length} ${queue.length === 1 ? 'tab needs' : 'tabs need'} a decision in this small daily queue.`
-    : 'Nothing due. Your future sunsets are still stored locally.';
+    : 'Nothing due. Your future review dates are still stored locally.';
 
   if (!queue.length) {
     setVisible(itemPanel, false);
     setVisible(empty, true);
+    if (options.focusItem) empty.querySelector<HTMLElement>('h2')?.focus();
+    if (options.message) queueAnnouncement.textContent = options.message;
     return;
   }
   setVisible(empty, false);
@@ -80,7 +85,8 @@ function renderQueue() {
   position.textContent = `${index + 1} of ${queue.length}`;
   previous.disabled = index === 0;
   next.disabled = index === queue.length - 1;
-  title.focus?.();
+  if (options.focusItem) title.focus();
+  if (options.message) queueAnnouncement.textContent = `${options.message} Now showing ${current.title}, ${index + 1} of ${queue.length}.`;
 }
 
 async function load() {
@@ -109,6 +115,12 @@ async function act(action: string) {
   if (busy || !queue[index]) return;
   busy = true;
   const current = queue[index];
+  const outcome: Record<string, string> = {
+    keep: `Kept ${current.title} open.`,
+    schedule: `Moved ${current.title} by seven days.`,
+    bookmark: `Bookmarked and closed ${current.title}.`,
+    close: `Closed ${current.title}.`,
+  };
   document.querySelectorAll<HTMLButtonElement>('[data-action]').forEach((button) => button.disabled = true);
   try {
     if (action === 'keep') await resolveKeep(current);
@@ -120,7 +132,7 @@ async function act(action: string) {
     index = Math.min(index, Math.max(queue.length - 1, 0));
     const state = await getState();
     saved = state.saved;
-    renderQueue();
+    renderQueue({ focusItem: true, message: outcome[action] });
     renderSaved();
   } catch {
     summary.textContent = 'That decision was not completed. Your tab is still in the queue; try again.';
@@ -133,8 +145,8 @@ async function act(action: string) {
 document.querySelectorAll<HTMLButtonElement>('[data-action]').forEach((button) => {
   button.addEventListener('click', () => void act(button.dataset.action ?? ''));
 });
-previous.addEventListener('click', () => { index -= 1; renderQueue(); });
-next.addEventListener('click', () => { index += 1; renderQueue(); });
+previous.addEventListener('click', () => { index -= 1; renderQueue({ message: 'Showing the previous due tab.' }); });
+next.addEventListener('click', () => { index += 1; renderQueue({ message: 'Showing the next due tab.' }); });
 document.querySelector('#retry')?.addEventListener('click', () => void load());
 document.querySelector('#undo-button')?.addEventListener('click', async () => {
   try {
@@ -158,13 +170,34 @@ exportButton.addEventListener('click', () => {
   exportStatus.textContent = `Exported ${saved.length} saved ${saved.length === 1 ? 'item' : 'items'} as Markdown.`;
 });
 
+deleteDataButton.addEventListener('click', () => deleteDialog.showModal());
+document.querySelector('#cancel-delete')?.addEventListener('click', () => deleteDialog.close());
+document.querySelector('#confirm-delete')?.addEventListener('click', async () => {
+  try {
+    await setState({ ...DEFAULT_STATE });
+    await updateBadge();
+    queue = [];
+    saved = [];
+    index = 0;
+    setVisible(undo, false);
+    deleteDialog.close();
+    renderQueue({ message: 'Deleted the local review queue, saved decisions, and undo record.' });
+    renderSaved();
+    deleteDataButton.focus();
+  } catch {
+    deleteDialog.close();
+    queueAnnouncement.textContent = 'The local data was not deleted. Try again.';
+    deleteDataButton.focus();
+  }
+});
+
 document.addEventListener('keydown', (event) => {
   if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.target instanceof HTMLInputElement) return;
   const key = event.key.toLowerCase();
   const action: Record<string, string> = { k: 'keep', s: 'schedule', b: 'bookmark', c: 'close' };
   if (action[key]) { event.preventDefault(); void act(action[key]); }
-  if (event.key === 'ArrowLeft' && index > 0) { index -= 1; renderQueue(); }
-  if (event.key === 'ArrowRight' && index < queue.length - 1) { index += 1; renderQueue(); }
+  if (event.key === 'ArrowLeft' && index > 0) { index -= 1; renderQueue({ message: 'Showing the previous due tab.' }); }
+  if (event.key === 'ArrowRight' && index < queue.length - 1) { index += 1; renderQueue({ message: 'Showing the next due tab.' }); }
 });
 
 void load();

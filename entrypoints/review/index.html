@@ -17,8 +17,8 @@
     <main id="main" class="review-main">
       <div class="review-intro">
         <div>
-          <p class="eyebrow">Today’s horizon</p>
-          <h1>Make the pile finite.</h1>
+          <p class="eyebrow">Daily review</p>
+          <h1>Decide what to do with due tabs</h1>
           <p id="queue-summary" class="lede">Loading your local review queue…</p>
         </div>
         <div class="sun-counter" aria-hidden="true"><span id="sun-count">—</span></div>
@@ -28,7 +28,7 @@
         <div id="loading" class="loading-state" aria-live="polite">Reading your local list…</div>
         <div id="item" hidden>
           <div class="item-meta"><span id="item-domain"></span><span id="item-date"></span></div>
-          <h2 id="item-title"></h2>
+          <h2 id="item-title" tabindex="-1"></h2>
           <p id="item-reason" class="item-reason"></p>
           <div class="decision-actions" aria-label="Decision actions">
             <button type="button" data-action="keep"><span class="key">K</span> Keep open</button>
@@ -44,8 +44,8 @@
         </div>
         <div id="empty" class="empty-state" hidden>
           <div class="empty-horizon" aria-hidden="true"></div>
-          <h2>The horizon is clear.</h2>
-          <p>No tabs need a decision today. Set a sunset from the toolbar when a tab starts to linger.</p>
+          <h2 tabindex="-1">No tabs need a decision</h2>
+          <p>Set a review date from the toolbar when a tab starts to linger.</p>
         </div>
         <div id="error" class="error-state" hidden>
           <h2>Your local list did not open.</h2>
@@ -61,15 +61,27 @@
 
       <section class="saved-section" aria-labelledby="saved-title">
         <div>
-          <p class="eyebrow">Retrievable</p>
+          <p class="eyebrow">Saved items</p>
           <h2 id="saved-title">Saved decisions</h2>
           <p>Kept and bookmarked items remain exportable from this browser.</p>
         </div>
-        <button id="export" type="button">Export Markdown</button>
+        <div class="saved-actions">
+          <button id="export" type="button">Export Markdown</button>
+          <button id="delete-data" class="danger-outline" type="button">Delete local data</button>
+        </div>
         <ul id="saved-list" class="saved-list"></ul>
         <p id="export-status" class="sr-only" aria-live="polite"></p>
       </section>
+      <p id="queue-announcement" class="sr-only" aria-live="polite"></p>
     </main>
+    <dialog id="delete-dialog" aria-labelledby="delete-title" aria-describedby="delete-description">
+      <h2 id="delete-title">Delete all local data?</h2>
+      <p id="delete-description">This deletes the review queue, saved decisions, and undo record. It does not close tabs or delete bookmarks.</p>
+      <div class="dialog-actions">
+        <button id="cancel-delete" type="button" autofocus>Keep my data</button>
+        <button id="confirm-delete" class="danger" type="button">Delete local data</button>
+      </div>
+    </dialog>
     <script type="module" src="./main.ts"></script>
   </body>
 </html>

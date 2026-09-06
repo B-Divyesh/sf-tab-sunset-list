@@ -18,9 +18,12 @@ const rootPath = siteRoot.pathname;
 const assetFiles = await filesBelow(join(rootPath, 'assets'));
 const shell = [
   '/',
+  '/demo/',
   '/privacy/',
   '/terms/',
+  '/404.html',
   '/favicon.svg',
+  '/apple-touch-icon.png',
   '/assets/sunset-horizon-768.webp',
   '/assets/sunset-horizon-1536.webp',
   ...assetFiles.map((file) => `/${relative(rootPath, file).replaceAll('\\', '/')}`),

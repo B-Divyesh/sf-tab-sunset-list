@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Try Tab Sunset List with five realistic sample tabs in an isolated browser demo." />
+    <meta name="theme-color" content="#f3ecdd" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Demo — Tab Sunset List" />
+    <meta property="og:description" content="Review five realistic sample tabs without changing extension data." />
+    <meta property="og:url" content="https://tab-sunset-list.sociobot.in/demo/" />
+    <meta property="og:image" content="https://tab-sunset-list.sociobot.in/assets/tab-sunset-list-social.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Demo — Tab Sunset List" />
+    <meta name="twitter:description" content="Review five realistic sample tabs without changing extension data." />
+    <meta name="twitter:image" content="https://tab-sunset-list.sociobot.in/assets/tab-sunset-list-social.webp" />
+    <title>Demo — Tab Sunset List</title>
+    <link rel="canonical" href="https://tab-sunset-list.sociobot.in/demo/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="module" src="/demo.ts"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to sample review</a>
+    <header class="site-header legal-header">
+      <a class="brand" href="/" aria-label="Tab Sunset List home"><span class="brand-sun" aria-hidden="true"></span><span>Tab Sunset List</span></a>
+      <nav aria-label="Primary navigation"><a href="/">Home</a><a href="/privacy/">Privacy</a><a class="nav-install" href="/downloads/tab-sunset-list-chrome.zip" download>Download</a></nav>
+    </header>
+
+    <aside class="sandbox-banner" aria-label="Demo mode">
+      <strong>Demo — sample data, nothing is saved</strong>
+      <span>The sample uses isolated browser storage.</span>
+      <div><button id="reset-demo" type="button">Reset demo</button><a id="start-real" href="/#install">Start for real</a></div>
+    </aside>
+
+    <main id="main" class="demo-main">
+      <div class="demo-intro">
+        <div>
+          <p class="eyebrow">Working sample</p>
+          <h1>Review a sample stale-tab queue</h1>
+          <p>Make keep, reschedule, bookmark, or close decisions for five realistic tabs.</p>
+        </div>
+        <div class="sun-counter" aria-hidden="true"><span id="demo-count">5</span></div>
+      </div>
+
+      <p id="demo-announcement" class="sr-only" aria-live="polite"></p>
+      <section class="demo-product" aria-labelledby="sample-title">
+        <div id="sample-item">
+          <div class="demo-top"><span id="sample-domain"></span><span id="sample-date"></span></div>
+          <h2 id="sample-title" tabindex="-1"></h2>
+          <p id="sample-reason" class="sample-reason"></p>
+          <p id="sample-intent" class="sample-intent"></p>
+          <div class="demo-decision-actions" aria-label="Sample decision actions">
+            <button type="button" data-sample-action="keep"><span class="key">K</span> Keep open</button>
+            <button type="button" data-sample-action="schedule"><span class="key">S</span> Move seven days</button>
+            <button type="button" data-sample-action="bookmark"><span class="key">B</span> Bookmark and close</button>
+            <button type="button" data-sample-action="close" class="danger"><span class="key">C</span> Close tab</button>
+          </div>
+          <div class="queue-nav">
+            <button id="sample-previous" type="button">← Previous</button>
+            <span id="sample-position"></span>
+            <button id="sample-next" type="button">Next →</button>
+          </div>
+        </div>
+        <div id="sample-empty" class="empty-state" hidden>
+          <div class="empty-horizon" aria-hidden="true"></div>
+          <h2 tabindex="-1">No sample tabs need a decision</h2>
+          <p>Reset the demo to review the five sample tabs again.</p>
+        </div>
+      </section>
+
+      <div id="sample-undo" class="undo" role="status" hidden>
+        <span>The sample tab was closed.</span>
+        <button id="sample-undo-button" type="button">Undo close</button>
+      </div>
+
+      <section class="demo-results" aria-labelledby="results-title">
+        <div>
+          <p class="eyebrow">Sample output</p>
+          <h2 id="results-title">Saved sample decisions</h2>
+          <p id="sample-summary">One saved item. No sample tabs rescheduled.</p>
+        </div>
+        <ul id="sample-saved" class="saved-list"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-mark"><span class="brand-sun" aria-hidden="true"></span><strong>Tab Sunset List</strong><p>Review stale tabs and decide what happens next.</p></div>
+      <nav aria-label="Legal links"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav>
+      <p class="provenance">Built by Param Factory · v1.1.0</p>
+      <p id="connectivity" class="connectivity" aria-live="polite">Site files are available offline after one visit.</p>
+    </footer>
+  </body>
+</html>

@@ -66,6 +66,12 @@ step. API errors remain in context, explain what failed, and provide retry. The
 landing site has an honest browser-only demo rather than pretending web pages can
 read real tabs.
 
+The demo carries the instrument language into a working sample: a persistent dark
+label marks the sandbox, one warm paper slip receives the current decision, and a
+plain saved-output list shows the result. The 404 uses an interrupted orbit and a
+partly hidden sun to explain a missing route without mood copy. Both treatments keep
+the same restrained geometry and avoid adding a generic application-card system.
+
 ## Motion policy
 
 State changes use 180–240ms opacity and transform transitions. A reviewed tab
@@ -101,6 +107,9 @@ state changes become instant opacity swaps. Meaning never depends on motion.
   reviewed for text artifacts, marks, seams, unintended symbols, and palette fit.
 - Delivery: source PNG retained under `assets/src/`; optimized responsive WebP
   renditions ship in the static site and each remains ≤300 KB.
+- Social preview: `public/site/assets/tab-sunset-list-social.webp` is a centered
+  1200×630 crop composed from that same generated source on 2026-09-06. No new
+  model output or outside asset was introduced.
 
 ### Authored geometry
 
