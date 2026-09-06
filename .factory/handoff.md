@@ -1,4 +1,30 @@
-# Tab Sunset List — verification 4 handoff
+# Tab Sunset List — review 2 handoff
+
+## Review 2 result
+
+Review 2 is a **PASS** with zero findings and zero untested claims. It reviewed
+implementation 9a672cf36a7025b11d96f05c63e819c3ce822807 against live
+<https://tab-sunset-list.sociobot.in>; the report/documentation baseline is
+2c54f5e75d55b24432066979438f9667cbd77692. Later changes do not change the
+product output.
+
+From a detached clean checkout, npm ci, the 5 unit tests, 13 site tests, 16
+fresh-profile extension tests, all 19 exact claim commands, npm run check,
+npm run build, and the production audit passed. Fresh desktop and phone live
+browsers showed the job, audience, and sample action before scrolling. The
+working sample was populated, persistently labelled, resettable, and isolated
+from real data. Offline routes, 404, keyboard/focus/reduced motion, privacy,
+links, metadata, headers, and live/build artifact equality passed.
+
+Fresh live Lighthouse was 100 for Performance, Accessibility, Best Practices,
+and SEO (LCP 919ms, TBT 47ms, CLS 0). Evidence and all prior-finding
+dispositions are in [.factory/review-2.md](review-2.md) and
+/work/.evidence/review-2/.
+
+Nothing remains to repair. Developer-mode installation, URL-only undo, and the
+intentional absence of cloud sync remain documented product limits.
+
+# Verification 4 handoff
 
 ## Independent QA result
 
