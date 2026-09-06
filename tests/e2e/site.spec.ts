@@ -32,6 +32,8 @@ test('@claim:one-click-demo opens a populated working sample in one action', asy
   await expect(page.getByRole('heading', { level: 2, name: 'Service worker lifecycle guide' })).toBeVisible();
   await expect(page.locator('#sample-position')).toHaveText('1 of 5');
   await expect(page.locator('#sample-saved li')).toHaveCount(1);
+  await page.evaluate(() => scrollTo(0, document.body.scrollHeight));
+  await expect.poll(() => page.getByLabel('Demo mode').evaluate((element) => Math.round(element.getBoundingClientRect().top))).toBe(0);
 });
 
 test('@claim:demo-isolation-reset keeps real data unchanged and clears the sample on exit', async ({ page }) => {

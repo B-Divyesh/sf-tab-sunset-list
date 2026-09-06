@@ -155,7 +155,7 @@ footer { display: grid; grid-template-columns: 1fr auto; gap: 32px; padding: 48p
   .review-demo { padding: 35px 18px 22px; }.demo-buttons { grid-template-columns: 1fr 1fr; }
   .privacy-panel { display: block; }.privacy-orbits { width: 130px; height: 130px; margin: 0 auto 42px; }.privacy-panel dl { display: block; margin-top: 36px; }.privacy-panel dl div { border-bottom: 1px solid rgba(255,249,236,.45); }
   footer { grid-template-columns: 1fr; }.connectivity { text-align: left; } footer nav { flex-wrap: wrap; gap: 8px 18px; }
-  .sandbox-banner { position: relative; grid-template-columns: 1fr; gap: 4px; padding-block: 12px; }.sandbox-banner > span, .sandbox-banner div { grid-column: 1; grid-row: auto; }.sandbox-banner div { margin-top: 6px; }
+  .sandbox-banner { grid-template-columns: 1fr; gap: 4px; padding-block: 12px; }.sandbox-banner > span, .sandbox-banner div { grid-column: 1; grid-row: auto; }.sandbox-banner div { margin-top: 6px; }
   .demo-main { width: min(100% - 24px, 620px); }.demo-intro { align-items: flex-start; gap: 16px; }.sun-counter { width: 68px; height: 68px; box-shadow: 7px 0 0 var(--marigold); }.sun-counter span { font-size: 1.55rem; }
   .demo-product { margin-top: 34px; padding: 24px 14px; }.demo-decision-actions { grid-template-columns: 1fr; }.saved-list li { align-items: flex-start; flex-direction: column; gap: 7px; }
 }
